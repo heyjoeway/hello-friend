@@ -1,6 +1,6 @@
 const render = (columns) => {
     const colors = options.COLOR_THEME;
-    const root = document.getElementById("container");
+    const root = document.getElementById("categories");
 
     let colourIndex = 0;
 
@@ -17,29 +17,39 @@ const render = (columns) => {
                     ); // join as path
 
                     if (bookmark.isSeparator) {
-                        return '<li class="separator">&nbsp;</li>';
+                        return '<div class="separator">&nbsp;</li>';
                     }
 
-                    return `<li>
-                            <a href="${bookmark.url}" ${
-                        title.endsWith("…") ? `title="${bookmark.title}"` : ""
-                    }>
+                    return `<a
+                                href="${bookmark.url}"
+                                class="category-item clickable"
+                                ${title.endsWith("…") ? `title="${bookmark.title}"` : ""}
+                            >
                                 ${title}
-                            </a>
-                        </li>`;
+                            </a>`;
                 })
                 .join("");
 
             colourIndex =
                 colourIndex >= colors.length - 1 ? 0 : colourIndex + 1;
-            return `<div class="column">
-                    <h2 class="folder-name" style="color: ${colors[colourIndex]}">
+            return `<div class="category">
+                    <div class="category-title" style="color: ${colors[colourIndex]}">
                         ${column.title}
-                    </h1>
-                    <ul>${listItems}</ul>
+                    </div>
+                    ${listItems}
                 </div>`;
         })
         .join("");
 
-    document.getElementById("welcome").innerHTML = options.TITLE;
+    document.getElementById("bg-top-left").innerHTML = options.TITLE;
+
+    // Dice roll!
+    let htmlDiceEntities = ["&#x2680;","&#x2681;","&#x2682;","&#x2683;","&#x2684;","&#x2685;"];
+    
+    function randomElement(arr) {
+        return arr[Math.round(Math.random()*(arr.length - 1))];
+    }
+
+    let e_bg_bottom_right = document.getElementById("bg-bottom-right");
+    e_bg_bottom_right.innerHTML = randomElement(htmlDiceEntities);
 };
