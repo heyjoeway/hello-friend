@@ -6,3 +6,10 @@
     font-style: normal;
 
 }
+
+@font-face {
+    font-family: 'Microsoft Sans Serif';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Microsoft Sans Serif'), url('micross.woff') format('woff');
+}

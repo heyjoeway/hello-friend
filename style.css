@@ -91,7 +91,8 @@ a {
 }
 
 .category-item {
-    cursor: pointer;
+    font-family: 'Microsoft Sans Serif';
+    font-size: 14px;
     opacity: 75%;
 }
 
