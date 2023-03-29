@@ -1,0 +1,21 @@
+name: Create and upload Firefox extension
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create extension
+        run: |
+          cd ${{github.workspace}}
+          zip -r my-extension.zip .
+          mv my-extension.zip my-extension.xpi
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-extension
+          path: my-extension.xpi
