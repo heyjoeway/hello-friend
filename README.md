@@ -2,6 +2,10 @@
 
 ![Screenshot preview of the hello-friend extension on a new tab](./PREVIEW.png)
 
+## WARNING
+
+This sends domain URLs to Google in order to get favicons. If you're not okay with this, then set `FAVICONS: false` in `options.js`. Pull requests with solutions to this are welcome.
+
 ## Notes
 
 -   In Firefox you'll have to manually set the home page.

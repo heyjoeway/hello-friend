@@ -1,6 +1,6 @@
 html, body {
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
     color: white;
     background: black;
     margin: 0;
@@ -11,6 +11,12 @@ html, body {
     font-family: 'franklin_gothicregular';
     overflow-x: hidden;
     text-transform: lowercase;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 * {
@@ -70,34 +76,35 @@ a {
 /* ========================================================================= */
 
 #categories {
-    padding-top: calc(50vh - (256px / 2));
-    padding-bottom: 128px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .category {
-    padding-bottom: 64px;
     width: 256px;
 }
 
 .category-item, .category-title {
     display: block;
     width: 100%;
-    text-align: center;
+    text-align: left;
     height: 48px;
     line-height: 48px;
+    box-sizing: border-box;
 }
 
 .category-item {
     font-family: 'Microsoft Sans Serif';
     font-size: 14px;
     opacity: 75%;
+    padding-left: 48px;
+
 }
 
 .category-title {
     font-size: 40px;
+    margin-left: 12px;
 }
 
 /* ========================================================================= */
@@ -136,4 +143,21 @@ a {
     left: 0;
     width: 64px;
     height: 64px;
+}
+
+.category-item-favicon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 13px;
+    left: 12px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.category-item-favicon > img {
+    position: absolute;
+    width: 100%;
+    filter: blur(8px);
+    transform: scale(3);
 }

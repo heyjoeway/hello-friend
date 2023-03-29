@@ -5,9 +5,10 @@ const options = {
     BACKGROUND: "#000000",
     SEPARATORS: ["-", ""],
     COLOR_THEME: [
-        "palevioletred",
         "orange",
+        "palevioletred",
         "skyblue"
     ],
     MAX_NAME_LENGTH: 30,
+    FAVICONS: true
 };

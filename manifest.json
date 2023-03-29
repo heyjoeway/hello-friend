@@ -1,6 +1,6 @@
 {
-    "name": "hello, friend",
-    "description": "Dark terminal-esque new tab page with your bookmarks",
+    "name": "start",
+    "description": "My new tab page",
     "permissions": ["bookmarks"],
     "icons": {
         "16": "icons/16.png",
