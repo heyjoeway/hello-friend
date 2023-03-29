@@ -29,6 +29,18 @@ function makeAJAXRequest(url, method = "GET") {
         xhr.send();
     });
 }
+/**
+ * @param {int} start - inclusive
+ * @param {int} end - exclusive
+ * @returns {int[]} - array of integers from start to end
+ * @example range(1, 5) // [1, 2, 3, 4]
+ * @example range(5, 1) // []
+ * @example range(5, 5) // []
+ * @example range(5, 6) // [5]
+ */
+function range(start, end) {
+    return Array(end - start).fill().map((_, idx) => start + idx)
+}
 
 class BookmarkTreeNode {
     /**
@@ -43,7 +55,15 @@ class BookmarkTreeNode {
         this.title = obj.title;
         this.url = obj.url;
         this.type = obj.type;
+
+        // Get domain name from URL
+        let faviconDomain = this.url;
+        try {
+            faviconDomain = new URL(this.url).hostname;
+        } catch (e) {}
+
         this.faviconURL = `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${this.url}&size=128`;
+        this.colorURL = `http://favicon.yandex.net/favicon/${faviconDomain}`;
 
         /** @type {BookmarkTreeNode[]} */
         this.children = [];
@@ -59,7 +79,7 @@ class BookmarkTreeNode {
         const contents = this.children.map(x => x.htmlBookmark()).join("");
         if (contents == "") return "";
         return (`
-            <div class="category">
+            <div class="category blur-in">
                 <div
                     class="category-title"
                     style="color:${color}"
@@ -76,10 +96,23 @@ class BookmarkTreeNode {
         let imgElement = "";
         if (options.FAVICONS)
             imgElement = (`
-                <div class="category-item-favicon">    
+                <div class="category-item-underline" style="background-color:${this.color}"></div>
+                <div class="category-item-favicon">
                     <img src="${this.faviconURL}" />
                 </div>
             `);
+
+        let urlDisplay = this.url;
+        // Remove HTTP/HTTPS
+        urlDisplay = urlDisplay.replace(/(^\w+:|^)\/\//, '');
+        // Remove www
+        urlDisplay = urlDisplay.replace(/^www\./, '');
+        // Remove query string
+        urlDisplay = urlDisplay.replace(/\?.*$/, '');
+        // Remove hash
+        urlDisplay = urlDisplay.replace(/#.*$/, '');
+        // Remove trailing slash
+        urlDisplay = urlDisplay.replace(/\/$/, '');
 
         return (`
             <a
@@ -87,9 +120,31 @@ class BookmarkTreeNode {
                 href=${this.url}
             >
                 ${imgElement}
-                ${this.title}
+                <div class="category-item-title">
+                    ${this.title}
+                </div>
+                <div class="category-item-url">
+                    ${urlDisplay}
+                </div>
             </a>
         `);
+    }
+
+    async updateFaviconColor() {
+        try {
+            this.color = await colorjs.prominent(this.colorURL, {
+                amount: 1,
+                format: "hex"
+            });
+
+            // LIKELY empty favicon, kinda hacky
+            if (this.color == "#000000")
+                this.color = "white";
+        } catch (e) {
+            console.error(e);
+            this.color = "white";
+        }
+        console.log(this.color);
     }
 }
 
@@ -108,6 +163,11 @@ async function renderPage(items) {
     }
 
     const rootFolders = bookmarksBar.children.filter(node => node.type == "folder");
+    
+    // Run all async operations in parallel to load icons faster
+    await Promise.allSettled(range(0, rootFolders.length).map(async (i) => {
+        await Promise.allSettled(rootFolders[i].children.map(x => x.updateFaviconColor()));
+    }));
     
     for (let i = 0; i < rootFolders.length; i++) {
         let color = options.COLOR_THEME[i % options.COLOR_THEME.length];

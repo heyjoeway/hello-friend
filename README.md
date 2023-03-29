@@ -4,7 +4,7 @@
 
 ## WARNING
 
-This sends domain URLs to Google in order to get favicons. If you're not okay with this, then set `FAVICONS: false` in `options.js`. Pull requests with solutions to this are welcome.
+This sends domain URLs to Google (to get high quality favicons) and Yandex (to bypass CORS restrictions and get low quality favicons for highlight colors). If you're not okay with this, then set `FAVICONS: false` in `options.js`. Pull requests with solutions to this are welcome.
 
 ## Notes
 

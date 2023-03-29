@@ -83,6 +83,9 @@ a {
 
 .category {
     width: 256px;
+    animation-duration: 0.5s;
+    padding-top: 24px;
+    padding-bottom: 24px;
 }
 
 .category-item, .category-title {
@@ -90,7 +93,6 @@ a {
     width: 100%;
     text-align: left;
     height: 48px;
-    line-height: 48px;
     box-sizing: border-box;
 }
 
@@ -98,7 +100,7 @@ a {
     font-family: 'Microsoft Sans Serif';
     font-size: 14px;
     opacity: 75%;
-    padding-left: 48px;
+    /* padding-left: 52px; */
 
 }
 
@@ -147,17 +149,50 @@ a {
 
 .category-item-favicon {
     position: absolute;
-    width: 24px;
-    height: 24px;
-    top: 13px;
-    left: 12px;
+    width: 32px;
+    height: 32px;
+    top: 9px;
+    left: 8px;
     overflow: hidden;
     border-radius: 50%;
 }
 
 .category-item-favicon > img {
     position: absolute;
+    width: 24px;
+    top: 4px;
+    left: 4px;
+    image-rendering: crisp-edges;
+}
+
+.category-item-underline {
+    position: absolute;
     width: 100%;
-    filter: blur(8px);
-    transform: scale(3);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    visibility: hidden;
+}
+
+.category-item:hover .category-item-underline {
+    visibility: visible;
+}
+
+.category-item-title {
+    position: absolute;
+    left: 52px;
+    top: 8px;
+    width: 100%;
+    font-size: 14px;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.category-item-url {
+    position: absolute;
+    left: 52px;
+    top: 28px;
+    width: 100%;
+    font-size: 10px;
+    font-family: 'Microsoft Sans Serif';
 }
