@@ -21,6 +21,9 @@ body {
 
 * {
     scrollbar-color: #111 #000;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 a {
