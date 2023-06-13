@@ -1,3 +1,5 @@
+[![Create and upload Firefox extension](https://github.com/heyjoeway/hello-friend/actions/workflows/main.yml/badge.svg)](https://github.com/heyjoeway/hello-friend/actions/workflows/main.yml)
+
 ## Preview
 
 ![Screenshot preview of the hello-friend extension on a new tab](./PREVIEW.png)
