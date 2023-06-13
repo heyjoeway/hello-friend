@@ -1,6 +1,6 @@
 const options = {
     TITLE: "start",
-    ROOT_FOLDER: /(bookmarks (tool)?bar|favou?rites bar)/i,
+    ROOT_FOLDER: /(start page)/i,
     TITLE_COLOR: "#FFFFFF",
     BACKGROUND: "#000000",
     SEPARATORS: ["-", ""],

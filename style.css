@@ -23,6 +23,10 @@ body {
     scrollbar-color: #111 #000;
 }
 
+*::-webkit-scrollbar {
+    background-color: #000;
+}
+
 a {
     color: inherit;
     text-decoration: none;

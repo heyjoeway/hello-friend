@@ -54,7 +54,7 @@ class BookmarkTreeNode {
         this.parentId = obj.parentId;
         this.title = obj.title;
         this.url = obj.url;
-        this.type = obj.type;
+        this.type = obj.url ? "bookmark" : "folder";
 
         // Get domain name from URL
         let faviconDomain = this.url;
@@ -153,16 +153,20 @@ class BookmarkTreeNode {
  */
 async function renderPage(items) {
     const root = document.getElementById("categories");
-    const bookmarksBar = items[0].children.find(
+    console.log(items[0].children);
+    const bookmarkBarRegex = /(bookmarks (tool)?bar|favou?rites bar)/i;
+    const startPageBookmarks = items[0].children.find(
+        x => bookmarkBarRegex.test(x.title)
+    ).children.find(
         x => options.ROOT_FOLDER.test(x.title)
     );
 
-    if (!bookmarksBar) {
+    if (!startPageBookmarks) {
         console.error(`Was expecting a folder called '${options.ROOT_FOLDER}'`);
         return;
     }
 
-    const rootFolders = bookmarksBar.children.filter(node => node.type == "folder");
+    const rootFolders = startPageBookmarks.children.filter(node => node.type == "folder");
     
     // Run all async operations in parallel to load icons faster
     await Promise.allSettled(range(0, rootFolders.length).map(async (i) => {
