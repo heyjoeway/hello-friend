@@ -22,7 +22,7 @@ body {
 * {
     scrollbar-color: #111 #000;
     text-overflow: ellipsis;
-    overflow: hidden;
+    /* overflow: hidden; */
     white-space: nowrap;
 }
 
@@ -48,36 +48,69 @@ a {
 @keyframes blur-in {
     from {
         filter: blur(128px) opacity(0%);
+        transform: rotateZ(15deg);
         scale: 2;
     }
     to {
         filter: blur(0px) opacity(100%);
+        transform: rotateZ(0deg);
         scale: 1;
     }
 }
 
 /* ========================================================================= */
 
-.bg-element {
+.bg-element {   
     position: fixed;
     font-size: 350px;
     opacity: 0.075;
 }
 
 #bg-top-left { 
-    top: -0.4em;
-    left: -0.2em;
+    animation-name: blur-in-top;
+    font-size: calc(min(40vw, 350px));
+    top: -4.1vw;
+    left: 0.95vh;
     animation-delay: 0.1s;
+    overflow-x: hidden;
+}
+
+@keyframes blur-in-top {
+    from {
+        filter: contrast(1.5) brightness(1.5) grayscale(1) blur(128px) opacity(0%);
+        -webkit-filter: contrast(1.5) brightness(1.5) grayscale(1) blur(128px) opacity(0%);
+        transform: rotateZ(15deg);
+        scale: 2;
+    }
+    to {
+        filter: contrast(1.5) brightness(0.7) grayscale(1) blur(calc(min(40vw, 350px) / 32)) opacity(100%);
+        -webkit-filter: contrast(1.5) brightness(0.7) grayscale(1) blur(calc(min(40vw, 350px) / 32)) opacity(100%);
+        transform: rotateZ(0deg);
+        scale: 1;
+    }
 }
 
 #bg-bottom-right { 
-    font-size: 800px;
-    rotate: 30deg;
-
-    bottom: -0.325em;
-    right: -0.1em;
-
+    animation-name: blur-in-bottom;
+    font-size: calc(min(92vw, 1000px));
+    bottom: -0.3em;
+    right: -0.09em;
     animation-delay: 0.5s;
+}
+
+@keyframes blur-in-bottom {
+    from {
+        filter: contrast(1.5) brightness(1.5) grayscale(1) blur(128px) opacity(0%);
+        -webkit-filter: contrast(1.5) brightness(1.5) grayscale(1) blur(128px) opacity(0%);
+        transform: rotateZ(60deg);
+        scale: 2;
+    }
+    to {
+        filter: contrast(1.5) brightness(0.7) grayscale(1) blur(calc(min(40vw, 350px) / 32)) opacity(100%);
+        -webkit-filter: contrast(1.5) brightness(0.7) grayscale(1) blur(calc(min(40vw, 350px) / 32)) opacity(100%);
+        transform: rotateZ(45deg);
+        scale: 1;
+    }
 }
 
 /* ========================================================================= */
@@ -203,3 +236,6 @@ a {
     font-size: 10px;
     font-family: 'Microsoft Sans Serif';
 }
+
+
+/* ========================================================================= */
