@@ -167,6 +167,13 @@ async function renderPage(items) {
         console.error(`Was expecting a folder called '${options.ROOT_FOLDER}'`);
         return;
     }
+    
+    let bookmarkFolderId = startPageBookmarks.id;
+    
+    document.getElementById("edit").addEventListener("click", () => {
+        // Navigate to the bookmarks page in current tab
+        chrome.tabs.update({ url: `chrome://bookmarks/?id=${bookmarkFolderId}` });
+    });
 
     const rootFolders = startPageBookmarks.children.filter(node => node.type == "folder");
     

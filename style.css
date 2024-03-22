@@ -48,13 +48,11 @@ a {
 @keyframes blur-in {
     from {
         filter: blur(128px) opacity(0%);
-        transform: rotateZ(15deg);
-        scale: 2;
+        transform: scale(2) rotateZ(15deg);
     }
     to {
         filter: blur(0px) opacity(100%);
-        transform: rotateZ(0deg);
-        scale: 1;
+        transform: scale(1) rotateZ(0deg);
     }
 }
 
@@ -77,16 +75,14 @@ a {
 
 @keyframes blur-in-top {
     from {
-        filter: contrast(1.5) brightness(1.5) grayscale(1) blur(128px) opacity(0%);
         -webkit-filter: contrast(1.5) brightness(1.5) grayscale(1) blur(128px) opacity(0%);
-        transform: rotateZ(15deg);
-        scale: 2;
+        filter: contrast(1.5) brightness(1.5) grayscale(1) blur(128px) opacity(0%);
+        transform: scale(2) rotateZ(15deg);
     }
     to {
-        filter: contrast(1.5) brightness(0.7) grayscale(1) blur(calc(min(40vw, 350px) / 32)) opacity(100%);
         -webkit-filter: contrast(1.5) brightness(0.7) grayscale(1) blur(calc(min(40vw, 350px) / 32)) opacity(100%);
-        transform: rotateZ(0deg);
-        scale: 1;
+        filter: contrast(1.5) brightness(0.7) grayscale(1) blur(calc(min(40vw, 350px) / 32)) opacity(100%);
+        transform: scale(1) rotateZ(0deg);
     }
 }
 
@@ -100,16 +96,14 @@ a {
 
 @keyframes blur-in-bottom {
     from {
-        filter: contrast(1.5) brightness(1.5) grayscale(1) blur(128px) opacity(0%);
         -webkit-filter: contrast(1.5) brightness(1.5) grayscale(1) blur(128px) opacity(0%);
-        transform: rotateZ(60deg);
-        scale: 2;
+        filter: contrast(1.5) brightness(1.5) grayscale(1) blur(128px) opacity(0%);
+        transform: scale(2) rotateZ(60deg);
     }
     to {
-        filter: contrast(1.5) brightness(0.7) grayscale(1) blur(calc(min(40vw, 350px) / 32)) opacity(100%);
         -webkit-filter: contrast(1.5) brightness(0.7) grayscale(1) blur(calc(min(40vw, 350px) / 32)) opacity(100%);
-        transform: rotateZ(45deg);
-        scale: 1;
+        filter: contrast(1.5) brightness(0.7) grayscale(1) blur(calc(min(40vw, 350px) / 32)) opacity(100%);
+        transform: scale(1) rotateZ(45deg);
     }
 }
 
@@ -157,7 +151,7 @@ a {
 
 .clickable {
     cursor: pointer;
-    scale: 100%;
+    transform: scale(100%);
     transition: opacity 0.1s, scale 0.05s;
     transition-timing-function: cubic-bezier(0, 0.55, 0.45, 1);
 }
@@ -168,7 +162,7 @@ a {
 }
 
 .clickable:active {
-    scale: 90%;
+    transform: scale(90%);
     opacity: 90%;
     background-color: rgba(255,255,255,0.05);    
 }
@@ -205,8 +199,7 @@ a {
 
 .category-item-favicon > img {
     width: 24px;
-    image-rendering: crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
 }
 
 
@@ -235,4 +228,25 @@ a {
 
 .category-item-url {
     font-size: 10px;
+    color: #AAA;
+    padding-top: 2px;
+}
+
+#edit {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 22px;
+    transform: scaleX(-100%);
+    transition: ease-out color 0.1s;
+}
+
+#edit:hover {
+    color: rgba(255,255,255,0.8);
 }
