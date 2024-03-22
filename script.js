@@ -120,11 +120,13 @@ class BookmarkTreeNode {
                 href=${this.url}
             >
                 ${imgElement}
-                <div class="category-item-title">
-                    ${this.title}
-                </div>
-                <div class="category-item-url">
-                    ${urlDisplay}
+                <div class="category-item-text">
+                    <div class="category-item-title">
+                        ${this.title}
+                    </div>
+                    <div class="category-item-url">
+                        ${urlDisplay}
+                    </div>
                 </div>
             </a>
         `);
